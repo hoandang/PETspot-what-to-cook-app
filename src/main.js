@@ -13,7 +13,7 @@ Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
 Vue.mixin({
   methods: {
-    async invoke(functionName, data)
+    async invoke(functionName, data = {})
     {
       const lambda = new Lambda({
         credentials: Auth.essentialCredentials(await Auth.currentCredentials()),
@@ -24,6 +24,10 @@ Vue.mixin({
         InvocationType: 'RequestResponse',
         Payload: JSON.stringify(data)
       }).promise();
+    },
+    unique(array)
+    {
+      return [...new Set(array)];
     }
   },
   data()
