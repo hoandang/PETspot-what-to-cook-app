@@ -1,24 +1,11 @@
-# myamplifyproject
+# What to cook app
 
-## Project setup
-```
-npm install
-```
+### Features:
+- Search recipes on 200+ recipes in database
+- Share recipes to others
+- Follow others
+- Add recipe to you cookbook
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Architecture Diagram:
+![Diagram](cloud-architecture.png?raw=true "Title")
+  
