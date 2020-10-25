@@ -1,18 +1,30 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" v-show="!isLoading">
+    <Dashboard v-if="isLogin"/>
+    <Login v-else/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Dashboard from './components/Dashboard';
+import Login from './components/Login';
+import { Auth } from 'aws-amplify';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { Login, Dashboard },
+  data() 
+  {
+    return {
+      isLogin: false,
+      isLoading: true
+    }
+  },
+  async created()
+  {
+    this.isLogin = (await Auth.currentCredentials()).authenticated;
+    this.isLoading = false;
+  },
 }
 </script>
 
@@ -21,8 +33,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
