@@ -12,8 +12,15 @@
     <div v-show="!showLogin" class="login" v-cloak>
       <h1>Sign Up</h1>
       <form @submit.prevent="signUp">
-        <input placeholder="email" type="email" v-model="email" required>
-        <input placeholder="password" type="password" v-model="password" required>
+        <p>
+          <input placeholder="name" type="text" v-model="name" required>
+        </p>
+        <p>
+          <input placeholder="email" type="email" v-model="email" required>
+        </p>
+        <p>
+          <input placeholder="password" type="password" v-model="password" required>
+        </p>
         <button type="submit">Sign Up</button>
       </form>
       <a @click.prevent="showLogin = true" href="#">Signin</a>
@@ -31,6 +38,7 @@ export default {
   data() 
   {
     return {
+      name: '',
       email: '',
       password: '',
       showLogin: true,
@@ -55,7 +63,10 @@ export default {
       try {
         await Auth.signUp({ 
           username: this.email,
-          password: this.password
+          password: this.password,
+          attributes: {
+            name: this.name
+          }
         });
         alert('Successfully signup, please login');
       } 
